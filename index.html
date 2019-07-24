@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My To Do list</title>
+    
+    <style>
+
+/* CSS styles mostly used from an internet source */
+
+/* List items sytling  */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  
+  /* style list items as unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* setting different colors for alternate items  */
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* dark bg color when mouse over */
+ul li:hover {
+  background: #ddd;
+}
+
+/* important style class. this is called later in js to mark an item if checked */
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+.header {
+  background-color: #f77225;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+ 
+}
+.body {
+  background-color: grey;
+  padding: 30px 40px;
+  color: Black;
+  text-align: left;
+}
+
+</style>
+
+    
+</head>
+<body>
+<div class="header">
+  <h2 style="margin:5px">To Do List</h2>
+  <br/>
+  <p><strong>Click to Add Items your check list</strong></p>
+  <p><strong>Click to cross/uncross items on your check list</strong></p>
+ </div>
+<br/>
+
+<div class="body">
+<input type="text" id="toDos"/>                            
+<button onclick="addItem()">Add List Items</button>
+<ul id="myList"></ul>
+</div>
+
+
+<script>
+function addItem(){ 
+    
+ if (document.getElementById("toDos").value === '') {      // if the form value is empty, alert user 
+    alert("Enter a valid Item!");
+  } else { 
+    
+    
+    var ul = document.getElementById("myList");     
+    var toDos = document.getElementById("toDos");
+   
+    var li = document.createElement("li");               // create li items for ul 
+    li.setAttribute('id',toDos.value);                   
+    li.appendChild(document.createTextNode(toDos.value));  // Assigning the form input value to ul  li-items. 
+    ul.appendChild(li);                                    // appending li items in ul 
+    
+    }
+    
+   
+}
+    
+var list = document.querySelector('ul');                // returning the ul element 
+list.addEventListener('click', function(evt) {          
+  if (evt.target.tagName === 'LI') {                    // select the dynamically added list items based on the LI tag for li items
+    evt.target.classList.toggle('checked');             // toggle check items 
+  }
+}, false);
+    
+    
+
+
+    
+    </script>
+</body>
+</html>
